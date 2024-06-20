@@ -19,54 +19,54 @@ class BracketsValidatorTest {
 
     @Test
     void testNullInput() {
-        assertFalse(validator.validate(null), "Null input should return false");
+        assertFalse(validator.isValid(null), "Null input should return false");
     }
 
     @Test
     void testEmptyInput() {
-        assertTrue(validator.validate(""), "Empty input should return true");
+        assertTrue(validator.isValid(""), "Empty input should return true");
     }
 
     @Test
     void testSinglePairOfBrackets() {
-        assertTrue(validator.validate("()"), "Single pair of brackets should return true");
-        assertTrue(validator.validate("[]"), "Single pair of brackets should return true");
-        assertTrue(validator.validate("{}"), "Single pair of brackets should return true");
+        assertTrue(validator.isValid("()"), "Single pair of brackets should return true");
+        assertTrue(validator.isValid("[]"), "Single pair of brackets should return true");
+        assertTrue(validator.isValid("{}"), "Single pair of brackets should return true");
     }
 
     @Test
     void testNestedBrackets() {
-        assertTrue(validator.validate("([])"), "Nested brackets should return true");
-        assertTrue(validator.validate("{[()]}"), "Nested brackets should return true");
+        assertTrue(validator.isValid("([])"), "Nested brackets should return true");
+        assertTrue(validator.isValid("{[()]}"), "Nested brackets should return true");
     }
 
     @Test
     void testUnmatchedBrackets() {
-        assertFalse(validator.validate("("), "Unmatched opening bracket should return false");
-        assertFalse(validator.validate(")"), "Unmatched closing bracket should return false");
-        assertFalse(validator.validate("({)}"), "Incorrectly nested brackets should return false");
-        assertFalse(validator.validate("[(])"), "Incorrectly nested brackets should return false");
+        assertFalse(validator.isValid("("), "Unmatched opening bracket should return false");
+        assertFalse(validator.isValid(")"), "Unmatched closing bracket should return false");
+        assertFalse(validator.isValid("({)}"), "Incorrectly nested brackets should return false");
+        assertFalse(validator.isValid("[(])"), "Incorrectly nested brackets should return false");
     }
 
     @Test
     void testSequentialBrackets() {
-        assertTrue(validator.validate("()[]{}"), "Sequential brackets should return true");
-        assertFalse(validator.validate("([)]"), "Incorrectly nested sequential brackets should return false");
+        assertTrue(validator.isValid("()[]{}"), "Sequential brackets should return true");
+        assertFalse(validator.isValid("([)]"), "Incorrectly nested sequential brackets should return false");
     }
 
     @Test
     void testComplexValidBrackets() {
-        assertTrue(validator.validate("((({[{}]})))"), "Complex valid brackets should return true");
+        assertTrue(validator.isValid("((({[{}]})))"), "Complex valid brackets should return true");
     }
 
     @Test
     void testComplexInvalidBrackets() {
-        assertFalse(validator.validate("((({[{}]}))"), "Complex invalid brackets should return false");
+        assertFalse(validator.isValid("((({[{}]}))"), "Complex invalid brackets should return false");
     }
 
     @Test
     void testValidExpression() {
-        assertTrue(validator.validate(
+        assertTrue(validator.isValid(
                         """
                                 {
                                   "ключ": "значение",
@@ -82,7 +82,7 @@ class BracketsValidatorTest {
 
     @Test
     void testInvalidExpression() {
-        assertFalse(validator.validate(
+        assertFalse(validator.isValid(
                         """
                                 {
                                   "ключ": "значение",

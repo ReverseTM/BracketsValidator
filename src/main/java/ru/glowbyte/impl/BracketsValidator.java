@@ -18,7 +18,7 @@ public class BracketsValidator implements IBracketsValidator {
     }
 
     @Override
-    public boolean validate(String content) {
+    public boolean isValid(String content) {
         if (content == null || content.isEmpty()) {
             return content != null;
         }
